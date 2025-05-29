@@ -18,6 +18,8 @@ class Transaksi extends Model
         'tgl_transaksi',
         'keterangan',
         'status_transaksi',
+        'bukti_transfer',
+        'status_verifikasi',
     ];
 
     public function campaign()

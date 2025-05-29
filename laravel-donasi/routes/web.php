@@ -55,8 +55,6 @@ Route::get('/reset-password/{token}', [ForgotPasswordController::class, "resetpa
 Route::post('/reset-password', [ForgotPasswordController::class, "sendresetpassword"]);
 /* Verifikasi Email */
 Route::get('/verifikasi/{token}', [VerifikasiAkunController::class, "verifikasiakun"])->name('verifikasi-akun');
-/* Callback Midtrans */
-Route::post('/transaksi/callback', [MidtransCallbackController::class, 'receive']);
 
 /* Dashboard Admin */
 Route::group(['middleware' => ['auth', 'role:0']], function () {
@@ -97,13 +95,15 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/admin/post-tambah-artikel', [BlogController::class, "posttambahartikel"]);
     Route::get('/admin/edit-artikel/{id}', [BlogController::class, "editartikel"]);
     Route::post('/admin/post-edit-artikel', [BlogController::class, "posteditartikel"]);
+    Route::put('/admin/transaksi/{id}/verifikasi', [TransaksiController::class, 'verifikasi'])->name('transaksi.verifikasi');
+
 });
 
 
 Route::group(['middleware' => ['auth', 'role:1,2']], function () {
     /* Campaign & Donasi */
     Route::get('/campaign-saya', [CampaignController::class, "mycampaign"]);
-    Route::get('/donasi-saya', [transaksiController::class, "mydonation"]);
+    Route::get('/donasi-saya', [TransaksiController::class, "mydonation"]);
     /* Buat Campaign */
     // Route::get('/buat-campaign', [CampaignController::class, "buatcampaigndonatur"]);
     Route::post('/buat-campaign', [CampaignController::class, "createcampaigndonatur"]);
@@ -117,5 +117,4 @@ Route::group(['middleware' => ['auth', 'role:1,2']], function () {
     Route::post('/password-update', [DashboardController::class, "updatepassworduser"]);
     /* Transaksi Donasi */
     Route::post('/donasi', [TransaksiController::class, "create"]);
-    Route::get('/checkout/{id}', [TransaksiController::class, "checkout"]);
 });

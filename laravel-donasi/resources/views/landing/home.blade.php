@@ -213,27 +213,27 @@
             <div class="container p-4">
                 <div class="carousel-inner" style="border-radius: 10px;">
                     <div class="carousel-item active">
-                        <img src="https://images.unsplash.com/photo-1581059686229-de26e6ae5dc4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80"
+                        <img src="https://static01.nyt.com/images/2023/12/28/multimedia/gaza-hunger-kjfz/gaza-hunger-kjfz-superJumbo.jpg?quality=75&auto=webp"
                             class="d-block w-100" alt="..." style="height: 30vh; object-fit: cover">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Aksi Penyaluran Dana Bantuan Tsunami</h5>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, deserunt.</p>
+                            <h5><b>Donasi Anda adalah tanggung jawab sosial.</b></h5>
+                            <p>Setiap bantuan langsung berdampak dan mengubah hidup mereka.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="https://images.unsplash.com/photo-1475776408506-9a5371e7a068?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1058&q=80"
                             class="d-block w-100" alt="..." style="height: 30vh; object-fit: cover">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Penyaluran Dana Bantuan Korban Erupsi Semeru</h5>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, aliquid.</p>
+                            <h5><b>Kepedulian kecil bisa membawa perubahan besar.</b></h5>
+                            <p>Donasi dari banyak tangan telah membuktikan kekuatannya.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="https://images.unsplash.com/photo-1544257750-572358f5da22?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1215&q=80"
                             class="d-block w-100" alt="..." style="height: 30vh; object-fit: cover">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Penyaluran Dana Bantuan Korban Terdampak Badai</h5>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, molestias!</p>
+                            <h5><b>Ayo berbagi dan bantu lebih banyak orang!</b></h5>
+                            <p>Bersama, kita bisa menjangkau lebih banyak penerima manfaat.</p>
                         </div>
                     </div>
                 </div>

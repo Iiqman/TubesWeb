@@ -16,12 +16,31 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        $jumlahuser = User::all()->where('role', 1)->count();
-        $jumlahcampaign = Campaign::all()->count();
-        $jumlahdanaterkumpul = Transaksi::all()->where('status_transaksi', 1)->sum('nominal_transaksi');
-        $nominalterbanyak = Transaksi::with('user')->select('user_id', DB::raw('max(nominal_transaksi) as max'))->where('status_transaksi', 1)->groupBy('user_id')->orderBy('nominal_transaksi', 'desc')->limit(5)->get();
-        // $donasiterbanyak = Transaksi::with('user')->select('user_id', DB::raw('sum(nominal_transaksi) as total'))->where('status_transaksi', 1)->groupBy('user_id')->orderBy('total', 'desc')->limit(5)->get();
-        $donasiterbanyak = Transaksi::with('user')->select('user_id', DB::raw('count(*) as total'))->where('status_transaksi', 1)->groupBy('user_id')->orderBy('total', 'desc')->limit(5)->get();
+        $jumlahuser = User::where('role', 1)->count();
+        $jumlahcampaign = Campaign::count();
+
+        // Ganti cara hitung jumlah dana, langsung dari campaign.dana_terkumpul
+        $jumlahdanaterkumpul = Transaksi::where('status_verifikasi', 'terverifikasi')->sum('nominal_transaksi');
+
+
+        // Donasi nominal tertinggi per user (verifikasi)
+        $nominalterbanyak = Transaksi::with('user')
+            ->select('user_id', DB::raw('MAX(nominal_transaksi) as max'))
+            ->where('status_verifikasi', 'terverifikasi')
+            ->groupBy('user_id')
+            ->orderByDesc('max')
+            ->limit(5)
+            ->get();
+
+        // Jumlah donasi terbanyak per user (jumlah transaksi)
+        $donasiterbanyak = Transaksi::with('user')
+            ->select('user_id', DB::raw('COUNT(*) as total'))
+            ->where('status_verifikasi', 'terverifikasi')
+            ->groupBy('user_id')
+            ->orderByDesc('total')
+            ->limit(5)
+            ->get();
+
         return view('admin.home', [
             'title' => self::title,
             'jumlahuser' => $jumlahuser,
@@ -62,7 +81,6 @@ class DashboardController extends Controller
             'phone_number' => 'required|numeric'
         ]);
 
-
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -83,7 +101,7 @@ class DashboardController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
 
-        if (!is_null($request->input('password') & $request->input('password_baru') & $request->input('konfirmasi_password'))) {
+        if (!is_null($request->input('password') && $request->input('password_baru') && $request->input('konfirmasi_password'))) {
             if (Hash::check($request->input('password'), $user->password)) {
                 $user->password = Hash::make($request->input('password_baru'));
             } else {
@@ -110,7 +128,6 @@ class DashboardController extends Controller
             'phone_number' => 'required|numeric'
         ]);
 
-
         $user = User::findOrFail(Auth::user()->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -131,7 +148,7 @@ class DashboardController extends Controller
 
         $user = User::findOrFail(Auth::user()->id);
 
-        if (!is_null($request->input('password') & $request->input('password_baru') & $request->input('konfirmasi_password'))) {
+        if (!is_null($request->input('password') && $request->input('password_baru') && $request->input('konfirmasi_password'))) {
             if (Hash::check($request->input('password'), $user->password)) {
                 $user->password = Hash::make($request->input('password_baru'));
             } else {
